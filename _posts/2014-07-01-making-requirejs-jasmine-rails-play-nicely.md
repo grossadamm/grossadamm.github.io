@@ -29,6 +29,7 @@ Place your jquery-ui.js file into `/vendor/assets/javascripts/jquery-ui.js`
 
 
 `/config/requirejs.yml`
+
 ```
 shim:
   'jquery-ui':
@@ -51,6 +52,7 @@ map:
 First, we create a global module that just sends a message to the console.
 
 `/app/assets/javascripts/global.js`
+
 ```
 define(['jquery', 'jquery-ui'], function(routes) {
 	var init = function() {
@@ -67,6 +69,7 @@ define(['jquery', 'jquery-ui'], function(routes) {
 
 Second in our application.js file we are going to require our module.
 `/app/assets/javascripts/application.js`
+
 ```
 require(['global'], function(global) {
 	global.init();
@@ -80,6 +83,7 @@ If you open up your browser you should get a message on your console.
 Follow the instructions at [Jasmine-Rails] [6]. 
 
 >First, add jasmine-rails to your Gemfile, like so
+>
 >````
 >    group :test, :development do
 >      gem 'jasmine-rails'
@@ -141,6 +145,7 @@ might look like this:
 >Remove any reference to `src_files` in `spec/javascripts/support/jasmine.yml`, to ensure files aren't loaded prematurely.
 >
 >Create your custom layout `app/views/layouts/jasmine_rails/spec_runner.html.erb` like so:
+>
 >```erb
 >
 ><!DOCTYPE html>
@@ -175,6 +180,7 @@ Place the modified files into `/spec/javascripts/helpers/`.
 ## Let's actually write a test!
 
 `/spec/javascripts/javascripts/global_spec.js`
+
 ```
 require(['global', 'jquery'], function(global) {
 	describe('Global', function() {
