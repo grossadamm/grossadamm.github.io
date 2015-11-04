@@ -1,5 +1,5 @@
 # Dependencies
-markdown:         redcarpet
+#markdown:         redcarpet
 highlighter:      pygments
 
 # Permalinks
@@ -15,3 +15,6 @@ author:
   name:           Adam Gross
   url:            https://twitter.com/grossadamm
   email:          grossadamm@gmail.com
+
+gems:             [jekyll-paginate]
+paginate:         3

@@ -4,7 +4,7 @@
  <title>Adam Gross</title>
  <link href="http://grossadamm.github.io//atom.xml" rel="self"/>
  <link href="http://grossadamm.github.io//"/>
- <updated>2014-06-30T14:34:19-04:00</updated>
+ <updated>2015-11-03T22:28:09-08:00</updated>
  <id>http://grossadamm.github.io/</id>
  <author>
    <name>Adam Gross</name>
@@ -13,17 +13,305 @@
 
  
  <entry>
-   <title>Testing out this new jekyll stuff</title>
-   <link href="http://grossadamm.github.io///2014/06/30/testing-out-this-new-jekyll-stuff/"/>
-   <updated>2014-06-30T00:00:00-04:00</updated>
-   <id>http://grossadamm.github.io//2014/06/30/testing-out-this-new-jekyll-stuff</id>
-   <content type="html">&lt;p&gt;&lt;a href=&quot;http://jekyllrb.com&quot;&gt;Jekyll&lt;/a&gt; is a static site generator, an open-source tool for creating simple yet powerful websites of all shapes and sizes. From &lt;a href=&quot;https://github.com/jekyll/jekyll/blob/master/README.markdown&quot;&gt;the project&amp;#39;s readme&lt;/a&gt;:&lt;/p&gt;
+   <title>Victoria</title>
+   <link href="http://grossadamm.github.io///2015/11/02/victoria/"/>
+   <updated>2015-11-02T00:00:00-08:00</updated>
+   <id>http://grossadamm.github.io//2015/11/02/victoria</id>
+   <content type="html">&lt;p&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Victoria_(ship)&quot;&gt;Victoria&lt;/a&gt; is the first ship to circumnavigate the glove. Quite the ambitious goal and out of 5 ships, only &lt;a href=&quot;https://github.com/grossadamm/victoria&quot;&gt;Victoria&lt;/a&gt; made it.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Goals for this project:&lt;/em&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Cross the pacific&lt;/li&gt;
+  &lt;li&gt;Circumnavigate the globe&lt;/li&gt;
+  &lt;li&gt;Remain under $2000&lt;/li&gt;
+  &lt;li&gt;Do not require any human input after launch&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;arduino&quot;&gt;Arduino&lt;/h3&gt;
+
+&lt;p&gt;To start with, everything will be controlled by a single arduino mega pro. Mega, so that I don’t run out of precious storage/ram space; and pro so I don’t waste precious power doing silly things like lighting leds no one will ever see.&lt;/p&gt;
+
+&lt;p&gt;I’ve broken down the build into four main phases:&lt;/p&gt;
+
+&lt;h3 id=&quot;phase-1httpsgithubcomgrossadammvictoriamilestonesphase201&quot;&gt;&lt;a href=&quot;https://github.com/grossadamm/victoria/milestones/Phase%201&quot;&gt;Phase 1&lt;/a&gt;&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Acquire Arduino&lt;/li&gt;
+  &lt;li&gt;Read/handle temperatures&lt;/li&gt;
+  &lt;li&gt;Remote control&lt;/li&gt;
+  &lt;li&gt;GPS navigation programming&lt;/li&gt;
+  &lt;li&gt;Rudder control&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;phase-2&quot;&gt;Phase 2&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Motor control&lt;/li&gt;
+  &lt;li&gt;Battery hookup&lt;/li&gt;
+  &lt;li&gt;Automated navigation&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;phase-3&quot;&gt;Phase 3&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Solar&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;phase-4&quot;&gt;Phase 4&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;GPS comms&lt;/li&gt;
+  &lt;li&gt;Storm detection&lt;/li&gt;
+  &lt;li&gt;Final construction&lt;/li&gt;
+&lt;/ul&gt;
+
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Making requirejs, jasmine, and rails all play nice</title>
+   <link href="http://grossadamm.github.io///2014/07/01/making-requirejs-jasmine-rails-play-nicely/"/>
+   <updated>2014-07-01T00:00:00-07:00</updated>
+   <id>http://grossadamm.github.io//2014/07/01/making-requirejs-jasmine-rails-play-nicely</id>
+   <content type="html">&lt;p&gt;I like tests. It’s somewhat unhealthy. I also work on the web and so I enjoy javascript quite a bit. So I set out on making our test suite on our new rails site also test our javascript modules.&lt;/p&gt;
+
+&lt;p&gt;I take absolutely no credit for any of this. If your hard work is listed here, let me know and I will cite you. I tried to cite everything I could remember.&lt;/p&gt;
+
+&lt;p&gt;On to the goodness…&lt;/p&gt;
+
+&lt;h2 id=&quot;requirejs-general-setup&quot;&gt;RequireJS General Setup&lt;/h2&gt;
+
+&lt;p&gt;Follow the instructions at &lt;a href=&quot;https://github.com/jwhitley/requirejs-rails&quot;&gt;requirejs-rails&lt;/a&gt;.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;Add the gem to your &lt;code&gt;Gemfile&lt;/code&gt; and dont’ forget to &lt;code&gt;bundle&lt;/code&gt;:
+&lt;code&gt;
+gem &#39;requirejs-rails`
+&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Cleanout your &lt;code&gt;application.js&lt;/code&gt; of all &lt;code&gt;\\=&lt;/code&gt; type requirements.&lt;/li&gt;
+  &lt;li&gt;In &lt;code&gt;layouts/application.html.erb&lt;/code&gt; replace &lt;code&gt;&amp;lt;%= javascript_include_tag &#39;application&#39; %&amp;gt;&lt;/code&gt; with &lt;code&gt;&amp;lt;%= requirejs_include_tag &quot;application&quot; %&amp;gt;&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;make-requirejs-work-with-jquery-ui-and-ujs&quot;&gt;Make RequireJS work with jquery ui and ujs&lt;/h2&gt;
+
+&lt;p&gt;I had to make some modifications to make jquery ui and jquery ujs start working again.&lt;/p&gt;
+
+&lt;p&gt;Place your jquery-ui.js file into &lt;code&gt;/vendor/assets/javascripts/jquery-ui.js&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;/config/requirejs.yml&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;```
+shim:
+  ‘jquery-ui’:
+    deps: [‘jquery’]
+    exports: ‘$’
+  ‘jquery_ujs’:
+    - ‘jquery’&lt;/p&gt;
+
+&lt;p&gt;map:
+  ‘*’:
+    ‘jquery’: ‘jquery_with_rails_ujs’
+  ‘jquery_ujs’: 
+    ‘jquery’: ‘jquery’ 
+  ‘jquery_with_rails_ujs’: 
+    ‘jquery’: ‘jquery’ 
+```&lt;/p&gt;
+
+&lt;h2 id=&quot;make-sure-requirejs-is-working-like-it-should&quot;&gt;Make sure requirejs is working like it should&lt;/h2&gt;
+
+&lt;p&gt;First, we create a global module that just sends a message to the console.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;/app/assets/javascripts/global.js&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;```
+define([‘jquery’, ‘jquery-ui’], function(routes) {
+	var init = function() {
+		$(function() {
+			console.log(‘hi there!’);
+		})
+	}&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;return {
+	init: init
+} }) ```
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Second in our application.js file we are going to require our module.
+&lt;code&gt;/app/assets/javascripts/application.js&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;
+require([&#39;global&#39;], function(global) {
+	global.init();
+})
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;If you open up your browser you should get a message on your console.&lt;/p&gt;
+
+&lt;h2 id=&quot;setup-jasmine-rails&quot;&gt;Setup Jasmine-rails&lt;/h2&gt;
+
+&lt;p&gt;Follow the instructions at &lt;a href=&quot;https://github.com/searls/jasmine-rails&quot;&gt;Jasmine-Rails&lt;/a&gt;.&lt;/p&gt;
 
 &lt;blockquote&gt;
-&lt;p&gt;Jekyll is a simple, blog aware, static site generator. It takes a template directory [...] and spits out a complete, static website suitable for serving with Apache or your favorite web server. This is also the engine behind GitHub Pages, which you can use to host your project’s page or blog right here from GitHub.&lt;/p&gt;
+  &lt;p&gt;First, add jasmine-rails to your Gemfile, like so&lt;/p&gt;
+
+  &lt;p&gt;&lt;code&gt;
+   group :test, :development do
+     gem &#39;jasmine-rails&#39;
+   end
+&lt;/code&gt;
+Next:&lt;/p&gt;
+
+  &lt;p&gt;&lt;code&gt;
+$ bundle install
+&lt;/code&gt;&lt;/p&gt;
+
+  &lt;p&gt;And finally, run the Rails generator:&lt;/p&gt;
+
+  &lt;p&gt;&lt;code&gt;
+$ rails generate jasmine_rails:install
+&lt;/code&gt;&lt;/p&gt;
+
+  &lt;p&gt;The generator will create the necessary configuration files and mount a test
+runner to &lt;a href=&quot;http://localhost:3000/specs&quot;&gt;/specs&lt;/a&gt; so that you can get started
+writing specs!&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;It&amp;#39;s an immensely useful tool. Find out more by &lt;a href=&quot;https://github.com/jekyll/jekyll&quot;&gt;visiting the project on GitHub&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I also went ahead and modified my &lt;code&gt;jasmine.yml&lt;/code&gt; as follows:&lt;/p&gt;
+
+&lt;p&gt;```
+src_dir: “app/assets/javascripts”&lt;/p&gt;
+
+&lt;p&gt;css_dir: “app/assets/stylesheets”&lt;/p&gt;
+
+&lt;p&gt;css_files:&lt;/p&gt;
+
+&lt;p&gt;spec_dir: spec/javascripts&lt;/p&gt;
+
+&lt;p&gt;helpers:
+  - “helpers/&lt;em&gt;*/&lt;/em&gt;.{js}”&lt;/p&gt;
+
+&lt;p&gt;spec_files:
+  - “&lt;em&gt;*/&lt;/em&gt;[Ss]pec.{js}”&lt;/p&gt;
+
+&lt;p&gt;tmp_dir: “tmp/jasmine”
+```&lt;/p&gt;
+
+&lt;h2 id=&quot;make-jasmine-rails-play-nice-with-requirejs&quot;&gt;Make Jasmine-Rails play nice with requirejs&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Create a custom layout in &lt;code&gt;app/views/layouts/jasmine_rails/spec_runner.html.erb&lt;/code&gt; and reference your helper:&lt;/p&gt;
+
+  &lt;p&gt;If you wanted to do something like this using &lt;a href=&quot;https://github.com/jwhitley/requirejs-rails&quot;&gt;requirejs-rails&lt;/a&gt;, your helper
+might look like this:&lt;/p&gt;
+
+  &lt;p&gt;&lt;code&gt;ruby
+# in lib/jasmine_rails/spec_helper.rb
+module JasmineRails
+ module SpecHelper
+   # Gives us access to the require_js_include_tag helper
+   include RequirejsHelper
+ end
+end
+&lt;/code&gt;&lt;/p&gt;
+
+  &lt;p&gt;Remove any reference to &lt;code&gt;src_files&lt;/code&gt; in &lt;code&gt;spec/javascripts/support/jasmine.yml&lt;/code&gt;, to ensure files aren’t loaded prematurely.&lt;/p&gt;
+
+  &lt;p&gt;Create your custom layout &lt;code&gt;app/views/layouts/jasmine_rails/spec_runner.html.erb&lt;/code&gt; like so:&lt;/p&gt;
+
+  &lt;p&gt;```erb&lt;/p&gt;
+
+  &lt;p&gt;&amp;lt;!DOCTYPE html&amp;gt;&lt;/p&gt;
+  &lt;html&gt;
+ &lt;head&gt;
+   &lt;meta content=&quot;text/html;charset=UTF-8&quot; http-equiv=&quot;Content-Type&quot; /&gt;
+   &lt;title&gt;Jasmine Specs&lt;/title&gt;
+
+   &amp;lt;%= stylesheet_link_tag *jasmine_css_files %&amp;gt;
+   &amp;lt;%= requirejs_include_tag %&amp;gt;
+   &amp;lt;%= javascript_include_tag *jasmine_js_files %&amp;gt;
+ &lt;/head&gt;
+ &lt;body&gt;
+   &lt;div id=&quot;jasmine_content&quot;&gt;&lt;/div&gt;
+   &amp;lt;%= yield %&amp;gt;
+ &lt;/body&gt;
+&lt;/html&gt;
+
+  &lt;p&gt;```&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;jasmine-fixture-and-jasmin-jquery&quot;&gt;jasmine-fixture and jasmin-jquery&lt;/h2&gt;
+
+&lt;p&gt;Both  &lt;a href=&quot;https://github.com/velesin/jasmine-jquery&quot;&gt;Jasmine-Jquery&lt;/a&gt;, and &lt;a href=&quot;https://github.com/searls/jasmine-fixture&quot;&gt;Jasmine-Fixture&lt;/a&gt; need to be converted to modules to work correctly.&lt;/p&gt;
+
+&lt;p&gt;Replace &lt;code&gt;(function($) {&lt;/code&gt; with &lt;code&gt;require([&#39;jquery&#39;], function($) {&lt;/code&gt; at the beginning of both files.&lt;/p&gt;
+
+&lt;p&gt;Here are gists of my modified &lt;a href=&quot;https://gist.github.com/grossadamm/11add4b4681df3a23804&quot;&gt;jasmine-fixture&lt;/a&gt; and my modified &lt;a href=&quot;https://gist.github.com/grossadamm/a4f6997a369d30eb5110&quot;&gt;jasmine-jquery&lt;/a&gt; for quick references.&lt;/p&gt;
+
+&lt;p&gt;Place the modified files into &lt;code&gt;/spec/javascripts/helpers/&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;lets-actually-write-a-test&quot;&gt;Let’s actually write a test!&lt;/h2&gt;
+
+&lt;p&gt;&lt;code&gt;/spec/javascripts/javascripts/global_spec.js&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;```
+require([‘global’, ‘jquery’], function(global) {
+	describe(‘Global’, function() {&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;	it(&quot;is defined&quot;, function() {
+		expect(typeof global).toBe(&#39;object&#39;)
+		expect(typeof global.init).toBe(&#39;function&#39;)
+	})
+}); ); ```
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If you run &lt;code&gt;rake spec:javascript&lt;/code&gt; or open your browser and point it to &lt;code&gt;/specs&lt;/code&gt; you should see a passing test!&lt;/p&gt;
+
+&lt;h2 id=&quot;include-those-javascript-tests-in-rspec&quot;&gt;Include those javascript tests in rspec!&lt;/h2&gt;
+
+&lt;p&gt;Create &lt;code&gt;/spec/features/javascript_spec.rb&lt;/code&gt;, this method does require capybara and a way to run js on capybara (capybara-webkit is what I’m using)&lt;/p&gt;
+
+&lt;p&gt;```
+require ‘spec_helper’&lt;/p&gt;
+
+&lt;p&gt;feature ‘Jasmine suite’, :js do
+  def run_jasmine_tests
+    visit ‘/specs’
+  end&lt;/p&gt;
+
+&lt;p&gt;scenario “running all the javascript tests” do
+    run_jasmine_tests&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;expect(page).to have_css(&#39;.passed&#39;)
+
+if page.has_css?(&quot;.failed&quot;)
+  messages = []
+  all(&#39;.spec-detail.failed .description&#39;).each_with_index do |spec, index|
+    messages &amp;lt;&amp;lt; &quot;#{index + 1}. #{spec.text}&quot;
+  end
+  messages.unshift(&quot;Jasmine suite failed with #{messages.size} failures&quot;)
+
+  fail messages.join(&quot;\n&quot;)
+end   end end ```
+&lt;/code&gt;&lt;/pre&gt;
+
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Testing out this new jekyll stuff</title>
+   <link href="http://grossadamm.github.io///2014/06/30/testing-out-this-new-jekyll-stuff/"/>
+   <updated>2014-06-30T00:00:00-07:00</updated>
+   <id>http://grossadamm.github.io//2014/06/30/testing-out-this-new-jekyll-stuff</id>
+   <content type="html">&lt;p&gt;&lt;a href=&quot;http://jekyllrb.com&quot;&gt;Jekyll&lt;/a&gt; is a static site generator, an open-source tool for creating simple yet powerful websites of all shapes and sizes. From &lt;a href=&quot;https://github.com/jekyll/jekyll/blob/master/README.markdown&quot;&gt;the project’s readme&lt;/a&gt;:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Jekyll is a simple, blog aware, static site generator. It takes a template directory […] and spits out a complete, static website suitable for serving with Apache or your favorite web server. This is also the engine behind GitHub Pages, which you can use to host your project’s page or blog right here from GitHub.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;It’s an immensely useful tool. Find out more by &lt;a href=&quot;https://github.com/jekyll/jekyll&quot;&gt;visiting the project on GitHub&lt;/a&gt;.&lt;/p&gt;
 </content>
  </entry>
  
