@@ -41,6 +41,62 @@
   
   <div class="post">
     <h1 class="post-title">
+      <a href="/2015/11/04/victoria-propulsion/">
+        Victoria - propulsion
+      </a>
+    </h1>
+
+    <span class="post-date">04 Nov 2015</span>
+
+    <p>After reading through many designs based on thrusters, surfboards, kayaks, trolling motors, and a variety of home built motors. I’ve settled on what I think is a fairly resilient, yet simple enough design.</p>
+
+<h3 id="drive">Drive</h3>
+
+<p>There will be one “main drive” powered by a <a href="https://www.bluerobotics.com/store/thrusters/m200-motor-r1/">blue robotics motor</a> and a custom prop. There will also be two smaller “secondary drives” that are either <a href="https://www.bluerobotics.com/product-category/thrusters/t100-t200-thrusters/">blue robotics t100 thrusters</a> or just motors, again with custom props. The secondary drive motors will be placed to either side of the boat to allow them to both control the direction, and act as a primary source of propulsion as needed.</p>
+
+<p>The secondary drive mechanism will not be used at all unless at least one of the following occurs:</p>
+
+<ul>
+  <li>The main drive faults</li>
+  <li>The “rudder” faults</li>
+</ul>
+
+<h3 id="direction">Direction</h3>
+
+<p>Directional control will be provided by one of two means:</p>
+
+<ul>
+  <li>A “rudder”</li>
+  <li>Secondary drive motors</li>
+</ul>
+
+<h3 id="rudder">“Rudder”</h3>
+
+<p>Instead of a traditional rudder I’m leaning towards simply rotating the main motor. If for some reason that proves to be ineffective, a traditional rudder will be used. I did some initial research into rudder sizing and shapes and efficiencies. It seemed overly annoying to properly plan a rudder location, size, and shape, that meshed well with the prop size and speed, and the hull shape and speed. Rotating the motor seems like a cheap way to avoid making a dumb mistake here.</p>
+
+<p>Since I’m not sure of the proper name for the technique of rotating them otor, I’m still calling it a rudder.</p>
+
+<p>The rudder consists of:</p>
+
+<ul>
+  <li><a href="https://www.pololu.com/product/2827">A gear motor with encoder</a></li>
+  <li><a href="https://www.servocity.com/html/vertical_shaft_worm_drive_gear.html#.VjBao66rSHo">A worm gear</a></li>
+  <li><a href="https://www.arduino.cc/en/Main/ArduinoMotorShieldR3">A motor controller</a></li>
+  <li>And a shaft with a bottom <a href="http://www.amazon.com/Ceramic-Bearing-Yellow-Seal-8x22x7/dp/B00JQLGIUA">bearing</a> that semi-seals the shaft</li>
+</ul>
+
+<p>The shaft and rudder electronics will all be contained in a watertight isolation from the rest of the boat internals to prevent leaks from damaging the rest of the boat internals.</p>
+
+<p>The rudder electronics and motors will also all be located as far above the waterline of the boat as possible. Hopefully the combination of using the bottom bearing and worm gear bearing will keep water from exiting the shaft too much.</p>
+
+<h3 id="fault-tolerance">Fault tolerance</h3>
+
+<p>Based on the design, it is required that at least <em>2</em> out of the 3 drive motors fault before the boat becomes inoperable. For Victoria’s sake, hopefully that’s enough.</p>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
       <a href="/2015/11/02/victoria/">
         Victoria
       </a>
@@ -335,30 +391,11 @@ end   end end ```
 
   </div>
   
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2014/06/30/testing-out-this-new-jekyll-stuff/">
-        Testing out this new jekyll stuff
-      </a>
-    </h1>
-
-    <span class="post-date">30 Jun 2014</span>
-
-    <p><a href="http://jekyllrb.com">Jekyll</a> is a static site generator, an open-source tool for creating simple yet powerful websites of all shapes and sizes. From <a href="https://github.com/jekyll/jekyll/blob/master/README.markdown">the project’s readme</a>:</p>
-
-<blockquote>
-  <p>Jekyll is a simple, blog aware, static site generator. It takes a template directory […] and spits out a complete, static website suitable for serving with Apache or your favorite web server. This is also the engine behind GitHub Pages, which you can use to host your project’s page or blog right here from GitHub.</p>
-</blockquote>
-
-<p>It’s an immensely useful tool. Find out more by <a href="https://github.com/jekyll/jekyll">visiting the project on GitHub</a>.</p>
-
-  </div>
-  
 </div>
 
 <div class="pagination">
   
-    <span class="pagination-item older">Older</span>
+    <a class="pagination-item older" href="/page2">Older</a>
   
   
     <span class="pagination-item newer">Newer</span>

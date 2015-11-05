@@ -4,13 +4,65 @@
  <title>Adam Gross</title>
  <link href="http://grossadamm.github.io//atom.xml" rel="self"/>
  <link href="http://grossadamm.github.io//"/>
- <updated>2015-11-03T22:32:22-08:00</updated>
+ <updated>2015-11-04T22:24:55-08:00</updated>
  <id>http://grossadamm.github.io/</id>
  <author>
    <name>Adam Gross</name>
    <email>grossadamm@gmail.com</email>
  </author>
 
+ 
+ <entry>
+   <title>Victoria - propulsion</title>
+   <link href="http://grossadamm.github.io///2015/11/04/victoria-propulsion/"/>
+   <updated>2015-11-04T00:00:00-08:00</updated>
+   <id>http://grossadamm.github.io//2015/11/04/victoria-propulsion</id>
+   <content type="html">&lt;p&gt;After reading through many designs based on thrusters, surfboards, kayaks, trolling motors, and a variety of home built motors. I’ve settled on what I think is a fairly resilient, yet simple enough design.&lt;/p&gt;
+
+&lt;h3 id=&quot;drive&quot;&gt;Drive&lt;/h3&gt;
+
+&lt;p&gt;There will be one “main drive” powered by a &lt;a href=&quot;https://www.bluerobotics.com/store/thrusters/m200-motor-r1/&quot;&gt;blue robotics motor&lt;/a&gt; and a custom prop. There will also be two smaller “secondary drives” that are either &lt;a href=&quot;https://www.bluerobotics.com/product-category/thrusters/t100-t200-thrusters/&quot;&gt;blue robotics t100 thrusters&lt;/a&gt; or just motors, again with custom props. The secondary drive motors will be placed to either side of the boat to allow them to both control the direction, and act as a primary source of propulsion as needed.&lt;/p&gt;
+
+&lt;p&gt;The secondary drive mechanism will not be used at all unless at least one of the following occurs:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;The main drive faults&lt;/li&gt;
+  &lt;li&gt;The “rudder” faults&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;direction&quot;&gt;Direction&lt;/h3&gt;
+
+&lt;p&gt;Directional control will be provided by one of two means:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;A “rudder”&lt;/li&gt;
+  &lt;li&gt;Secondary drive motors&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;rudder&quot;&gt;“Rudder”&lt;/h3&gt;
+
+&lt;p&gt;Instead of a traditional rudder I’m leaning towards simply rotating the main motor. If for some reason that proves to be ineffective, a traditional rudder will be used. I did some initial research into rudder sizing and shapes and efficiencies. It seemed overly annoying to properly plan a rudder location, size, and shape, that meshed well with the prop size and speed, and the hull shape and speed. Rotating the motor seems like a cheap way to avoid making a dumb mistake here.&lt;/p&gt;
+
+&lt;p&gt;Since I’m not sure of the proper name for the technique of rotating them otor, I’m still calling it a rudder.&lt;/p&gt;
+
+&lt;p&gt;The rudder consists of:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.pololu.com/product/2827&quot;&gt;A gear motor with encoder&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.servocity.com/html/vertical_shaft_worm_drive_gear.html#.VjBao66rSHo&quot;&gt;A worm gear&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.arduino.cc/en/Main/ArduinoMotorShieldR3&quot;&gt;A motor controller&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;And a shaft with a bottom &lt;a href=&quot;http://www.amazon.com/Ceramic-Bearing-Yellow-Seal-8x22x7/dp/B00JQLGIUA&quot;&gt;bearing&lt;/a&gt; that semi-seals the shaft&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The shaft and rudder electronics will all be contained in a watertight isolation from the rest of the boat internals to prevent leaks from damaging the rest of the boat internals.&lt;/p&gt;
+
+&lt;p&gt;The rudder electronics and motors will also all be located as far above the waterline of the boat as possible. Hopefully the combination of using the bottom bearing and worm gear bearing will keep water from exiting the shaft too much.&lt;/p&gt;
+
+&lt;h3 id=&quot;fault-tolerance&quot;&gt;Fault tolerance&lt;/h3&gt;
+
+&lt;p&gt;Based on the design, it is required that at least &lt;em&gt;2&lt;/em&gt; out of the 3 drive motors fault before the boat becomes inoperable. For Victoria’s sake, hopefully that’s enough.&lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>Victoria</title>

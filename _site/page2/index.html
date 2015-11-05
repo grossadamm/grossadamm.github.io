@@ -41,236 +41,20 @@
   
   <div class="post">
     <h1 class="post-title">
-      <a href="/2014/07/01/making-requirejs-jasmine-rails-play-nicely/">
-        Making requirejs, jasmine, and rails all play nice
+      <a href="/2014/06/30/testing-out-this-new-jekyll-stuff/">
+        Testing out this new jekyll stuff
       </a>
     </h1>
 
-    <span class="post-date">01 Jul 2014</span>
+    <span class="post-date">30 Jun 2014</span>
 
-    <p>I like tests. It’s somewhat unhealthy. I also work on the web and so I enjoy javascript quite a bit. So I set out on making our test suite on our new rails site also test our javascript modules.</p>
-
-<p>I take absolutely no credit for any of this. If your hard work is listed here, let me know and I will cite you. I tried to cite everything I could remember.</p>
-
-<p>On to the goodness…</p>
-
-<h2 id="requirejs-general-setup">RequireJS General Setup</h2>
-
-<p>Follow the instructions at <a href="https://github.com/jwhitley/requirejs-rails">requirejs-rails</a>.</p>
-
-<ol>
-  <li>
-    <p>Add the gem to your <code>Gemfile</code> and dont’ forget to <code>bundle</code>:
-<code>
-gem 'requirejs-rails`
-</code></p>
-  </li>
-  <li>Cleanout your <code>application.js</code> of all <code>\\=</code> type requirements.</li>
-  <li>In <code>layouts/application.html.erb</code> replace <code>&lt;%= javascript_include_tag 'application' %&gt;</code> with <code>&lt;%= requirejs_include_tag "application" %&gt;</code></li>
-</ol>
-
-<h2 id="make-requirejs-work-with-jquery-ui-and-ujs">Make RequireJS work with jquery ui and ujs</h2>
-
-<p>I had to make some modifications to make jquery ui and jquery ujs start working again.</p>
-
-<p>Place your jquery-ui.js file into <code>/vendor/assets/javascripts/jquery-ui.js</code></p>
-
-<p><code>/config/requirejs.yml</code></p>
-
-<p>```
-shim:
-  ‘jquery-ui’:
-    deps: [‘jquery’]
-    exports: ‘$’
-  ‘jquery_ujs’:
-    - ‘jquery’</p>
-
-<p>map:
-  ‘*’:
-    ‘jquery’: ‘jquery_with_rails_ujs’
-  ‘jquery_ujs’: 
-    ‘jquery’: ‘jquery’ 
-  ‘jquery_with_rails_ujs’: 
-    ‘jquery’: ‘jquery’ 
-```</p>
-
-<h2 id="make-sure-requirejs-is-working-like-it-should">Make sure requirejs is working like it should</h2>
-
-<p>First, we create a global module that just sends a message to the console.</p>
-
-<p><code>/app/assets/javascripts/global.js</code></p>
-
-<p>```
-define([‘jquery’, ‘jquery-ui’], function(routes) {
-	var init = function() {
-		$(function() {
-			console.log(‘hi there!’);
-		})
-	}</p>
-
-<pre><code>return {
-	init: init
-} }) ```
-</code></pre>
-
-<p>Second in our application.js file we are going to require our module.
-<code>/app/assets/javascripts/application.js</code></p>
-
-<p><code>
-require(['global'], function(global) {
-	global.init();
-})
-</code></p>
-
-<p>If you open up your browser you should get a message on your console.</p>
-
-<h2 id="setup-jasmine-rails">Setup Jasmine-rails</h2>
-
-<p>Follow the instructions at <a href="https://github.com/searls/jasmine-rails">Jasmine-Rails</a>.</p>
+    <p><a href="http://jekyllrb.com">Jekyll</a> is a static site generator, an open-source tool for creating simple yet powerful websites of all shapes and sizes. From <a href="https://github.com/jekyll/jekyll/blob/master/README.markdown">the project’s readme</a>:</p>
 
 <blockquote>
-  <p>First, add jasmine-rails to your Gemfile, like so</p>
-
-  <p><code>
-   group :test, :development do
-     gem 'jasmine-rails'
-   end
-</code>
-Next:</p>
-
-  <p><code>
-$ bundle install
-</code></p>
-
-  <p>And finally, run the Rails generator:</p>
-
-  <p><code>
-$ rails generate jasmine_rails:install
-</code></p>
-
-  <p>The generator will create the necessary configuration files and mount a test
-runner to <a href="http://localhost:3000/specs">/specs</a> so that you can get started
-writing specs!</p>
+  <p>Jekyll is a simple, blog aware, static site generator. It takes a template directory […] and spits out a complete, static website suitable for serving with Apache or your favorite web server. This is also the engine behind GitHub Pages, which you can use to host your project’s page or blog right here from GitHub.</p>
 </blockquote>
 
-<p>I also went ahead and modified my <code>jasmine.yml</code> as follows:</p>
-
-<p>```
-src_dir: “app/assets/javascripts”</p>
-
-<p>css_dir: “app/assets/stylesheets”</p>
-
-<p>css_files:</p>
-
-<p>spec_dir: spec/javascripts</p>
-
-<p>helpers:
-  - “helpers/<em>*/</em>.{js}”</p>
-
-<p>spec_files:
-  - “<em>*/</em>[Ss]pec.{js}”</p>
-
-<p>tmp_dir: “tmp/jasmine”
-```</p>
-
-<h2 id="make-jasmine-rails-play-nice-with-requirejs">Make Jasmine-Rails play nice with requirejs</h2>
-
-<blockquote>
-  <p>Create a custom layout in <code>app/views/layouts/jasmine_rails/spec_runner.html.erb</code> and reference your helper:</p>
-
-  <p>If you wanted to do something like this using <a href="https://github.com/jwhitley/requirejs-rails">requirejs-rails</a>, your helper
-might look like this:</p>
-
-  <p><code>ruby
-# in lib/jasmine_rails/spec_helper.rb
-module JasmineRails
- module SpecHelper
-   # Gives us access to the require_js_include_tag helper
-   include RequirejsHelper
- end
-end
-</code></p>
-
-  <p>Remove any reference to <code>src_files</code> in <code>spec/javascripts/support/jasmine.yml</code>, to ensure files aren’t loaded prematurely.</p>
-
-  <p>Create your custom layout <code>app/views/layouts/jasmine_rails/spec_runner.html.erb</code> like so:</p>
-
-  <p>```erb</p>
-
-  <p>&lt;!DOCTYPE html&gt;</p>
-  <html>
- <head>
-   <meta content="text/html;charset=UTF-8" http-equiv="Content-Type" />
-   <title>Jasmine Specs</title>
-
-   &lt;%= stylesheet_link_tag *jasmine_css_files %&gt;
-   &lt;%= requirejs_include_tag %&gt;
-   &lt;%= javascript_include_tag *jasmine_js_files %&gt;
- </head>
- <body>
-   <div id="jasmine_content"></div>
-   &lt;%= yield %&gt;
- </body>
-</html>
-
-  <p>```</p>
-</blockquote>
-
-<h2 id="jasmine-fixture-and-jasmin-jquery">jasmine-fixture and jasmin-jquery</h2>
-
-<p>Both  <a href="https://github.com/velesin/jasmine-jquery">Jasmine-Jquery</a>, and <a href="https://github.com/searls/jasmine-fixture">Jasmine-Fixture</a> need to be converted to modules to work correctly.</p>
-
-<p>Replace <code>(function($) {</code> with <code>require(['jquery'], function($) {</code> at the beginning of both files.</p>
-
-<p>Here are gists of my modified <a href="https://gist.github.com/grossadamm/11add4b4681df3a23804">jasmine-fixture</a> and my modified <a href="https://gist.github.com/grossadamm/a4f6997a369d30eb5110">jasmine-jquery</a> for quick references.</p>
-
-<p>Place the modified files into <code>/spec/javascripts/helpers/</code>.</p>
-
-<h2 id="lets-actually-write-a-test">Let’s actually write a test!</h2>
-
-<p><code>/spec/javascripts/javascripts/global_spec.js</code></p>
-
-<p>```
-require([‘global’, ‘jquery’], function(global) {
-	describe(‘Global’, function() {</p>
-
-<pre><code>	it("is defined", function() {
-		expect(typeof global).toBe('object')
-		expect(typeof global.init).toBe('function')
-	})
-}); ); ```
-</code></pre>
-
-<p>If you run <code>rake spec:javascript</code> or open your browser and point it to <code>/specs</code> you should see a passing test!</p>
-
-<h2 id="include-those-javascript-tests-in-rspec">Include those javascript tests in rspec!</h2>
-
-<p>Create <code>/spec/features/javascript_spec.rb</code>, this method does require capybara and a way to run js on capybara (capybara-webkit is what I’m using)</p>
-
-<p>```
-require ‘spec_helper’</p>
-
-<p>feature ‘Jasmine suite’, :js do
-  def run_jasmine_tests
-    visit ‘/specs’
-  end</p>
-
-<p>scenario “running all the javascript tests” do
-    run_jasmine_tests</p>
-
-<pre><code>expect(page).to have_css('.passed')
-
-if page.has_css?(".failed")
-  messages = []
-  all('.spec-detail.failed .description').each_with_index do |spec, index|
-    messages &lt;&lt; "#{index + 1}. #{spec.text}"
-  end
-  messages.unshift("Jasmine suite failed with #{messages.size} failures")
-
-  fail messages.join("\n")
-end   end end ```
-</code></pre>
-
+<p>It’s an immensely useful tool. Find out more by <a href="https://github.com/jekyll/jekyll">visiting the project on GitHub</a>.</p>
 
   </div>
   
@@ -278,7 +62,7 @@ end   end end ```
 
 <div class="pagination">
   
-    <a class="pagination-item older" href="/page3">Older</a>
+    <span class="pagination-item older">Older</span>
   
   
     
