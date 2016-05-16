@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Victoria - Rudder Setting
+comments: true
 ---
 
 One of the things I cannot count on is that Victoria will always know where rudder "zero" is. Maybe something jostles the rudder motor hard and the connections slip somewhere, maybe I'm being overly cautious.
